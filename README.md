@@ -3,6 +3,8 @@ Resume Viewer
 
 Simple project that takes resume in json fromat to display person's profile in web. using Node.js, Express.js, Angular.js.
 
+Sample resume json file available at `public/milad.json` 
+
 # License
 
 > The MIT License (MIT)

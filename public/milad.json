@@ -1,0 +1,84 @@
+{
+ "name": "milad rezazadeh",
+ "image": "http://www.miladrk.com/img/milad.jpg",
+ "cv-url": "http://www.miladrk.com/CV-Milad-Rezazadeh.pdf",
+ "title": "software developer",
+ "summary": "Agile Software Developer, with strong communication skills and near 5 years of solid experience using .NET and JavaScript with special expertise in web technologies, services and cloud-based applications. Passionate about test-Driven development and delivery automation techniques.",
+ "education": {
+   "0": {
+       "title": "BSc in Computing",
+       "place": "Staffordshire University",
+       "date":"December 2012",
+       "score": "3.8"
+   }
+ },
+ "contact" : {
+     "mobile": "+60176992006",
+     "email": "me@miladrk.com",
+     "github": "https://github.com/milianoo",
+     "stackoverflow": "http://stackoverflow.com/users/906133/milad-rezazadeh",
+     "skype": "milad.rezazadeh"
+ },
+ "experiences": {
+     "0": {
+         "company": "Nintex",
+         "startDate": "2013",
+         "endDate": "2016",
+         "position": "developer",
+         "summary": "Troubleshooting, analysis and implement hot-fixes for existing on-premise web-based product, as well as merging the fixes to production release."
+     }, 
+     "1": {
+         "company": "Exact Software",
+         "startDate": "2012",
+         "endDate": "2013",
+         "position": "developer",
+         "summary": "Troubleshooting, analysis and implement hot-fixes for existing on-premise web-based product, as well as merging the fixes to production release."
+     }
+ }, 
+ "projects": {
+    "0": {
+        "name": "Devnest Portal",
+        "role": "Design, Development and Testing",
+        "summary": "Responsible for design, implementation and testing of multi-layer cloud-based, web solution.",
+        "technologies": [ "Node.js","MongoDB","JavaScript","Angular","Deployment","Web API","TDD","Agile"]
+    }   
+ },
+ "skills": {
+     "personal": {
+         "0" : { 
+             "name": "Communication",
+             "proficeiency": "0.90"
+         },
+         "1" : { 
+             "name": "Cooperative",
+             "proficeiency": "0.85"
+         },
+         "2" : { 
+             "name": "Learning",
+             "proficeiency": "0.85"
+         },
+         "3" : { 
+             "name": "Leadership",
+             "proficeiency": "0.75"
+         }
+     },
+     "technical": {
+         "0" : { 
+             "name": "C#.Net",
+             "proficeiency": "0.90"
+         },
+         "1" : { 
+             "name": "JavaScript",
+             "proficeiency": "0.85"
+         },
+         "2" : { 
+             "name": "HTML and CSS",
+             "proficeiency": "0.85"
+         },
+         "3" : { 
+             "name": "PHP",
+             "proficeiency": "0.55"
+         }
+     }
+ }
+}

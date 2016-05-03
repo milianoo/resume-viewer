@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile Viewer</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body ng-app="ResumeViewer" ng-controller="ResumeController">
+  <div class="se-pre-con"></div>
+  <div ng-if="!dataLoaded">
+        <div class="jumbotron">
+            <form>
+              <h3>Welcome to resume viewer.</h3>
+              <label for="basic-url">URL to your JSON Resume</label>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon3">https://example.com/resume.json</span>
+                  <input type="text" class="form-control" ng-model="resume.url" aria-describedby="basic-addon3" placeholder="try milad.json">
+                  <span class="input-group-btn">
+                    <button ng-click="loadResume()" class="btn btn-primary" type="button">Display Resume</button>
+                  </span>
+                </div>
+            </form>
+        </div>
+  </div>
+  <div class="container" ng-show="dataLoaded">
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="photo-header">
+          <!-- PHOTO (AVATAR) -->
+          <div id="photo">
+            <img src="{{resume.image}}" alt="avatar">
+          </div>
+          <div id="text-header">
+            <h3><strong>{{resume.name}}</strong></h3>
+            <h4>{{resume.title}}</h4>
+          </div>
+          <div id="action-header" class="pull-right hidden-xs">
+            <a href="./CV-Milad-Rezazadeh.pdf" class="btn btn-primary">Resume <i class="fa fa-download"></i></a>
+            <a href="mailto:{{resume.contact.email}}?Subject=miladrk.com" target="_top" class="btn btn-primary">Email <i class="fa fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- MAIN CONTENT -->
+      <div class="col-xs-12 col-sm-8">
+        <!-- ABOUT ME -->
+        <div class="box">
+          <h2>About Me</h2>
+          <p>{{resume.summary}}</p>
+        </div>
+        <!-- TIMELINE -->
+        <div class="box">
+          <h2>Timeline</h2>
+          <ul id="timeline" class="clearfix">
+            <li ng-repeat="experience in resume.experiences">
+              <div class="year pull-left">{{experience.startDate}}</div>
+              <div class="description pull-right">
+                    <h3>{{experience.company}}</h3>
+                    <h4 class="date"><i class="fa fa-calendar"></i> {{experience.startDate}} - {{experience.endDate}}</h4>
+                    <h4 class="detail">{{experience.position}}</h4>
+                    <p>{{experience.summary}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Projects -->
+        <div class="box">
+          <h2>Projects</h2>
+          <div ng-repeat="project in resume.projects" class="project clearfix">
+              <div class="col-xs-12">
+              <div class="name">{{project.name}}</div>
+              <div class="role">{{project.role}}</div>
+              <div class="description">{{project.summary}}</div>
+              <div class="tags">
+                <span ng-repeat="tech in project.technologies" class="label label-default" style="margin-right:5px;">{{tech}}</span>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- SIDE BAR --->
+      <div class="col-xs-12 col-sm-4">
+        <!-- CONTACT -->
+        <div class="box clearfix">
+          <h2>Contact</h2>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
+            <div class="title only pull-right">{{resume.contact.mobile}}</div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
+            <div class="title only pull-right">{{resume.contact.email}}</div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-github fa-fw"></span></div>
+            <div class="title pull-right">Github</div>
+            <div class="description pull-right">
+                <a href="{{resume.contact.github}}">view at github</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-stack-overflow fa-fw"></span></div>
+            <div class="title pull-right">Stackoverflow</div>
+            <div class="description pull-right">
+              <a href="{{resume.contact.stackoverflow}}">view at stackoverflow</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+            <div class="title pull-right">Skype</div>
+            <div class="description pull-right">{{resume.contact.skype}}</div>
+          </div>
+        </div>
+        
+        <!-- SKILLS -->
+        <div class="box">
+          <h2>Personal Skill</h2>
+          <div class="skills">
+            <div ng-repeat="pSkill in resume.skills.personal" class="item-skills" data-percent="{{pSkill.proficeiency}}" on-finish-render="ngRepeatFinished">{{pSkill.name}}</div>
+            <div class="skills-legend clearfix">
+              <div class="legend-left legend">Very Bad</div>
+              <div class="legend-left legend"><span>Good</span></div>
+              <div class="legend-right legend"><span>Very Good</span></div>
+              <div class="legend-right legend">Great</div>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <h2>Code Skill</h2>
+          <div class="skills">
+            <div ng-repeat="tSkill in resume.skills.technical" class="item-skills" data-percent="{{tSkill.proficeiency}}" on-finish-render="ngRepeatFinished">{{tSkill.name}}</div>
+            <div class="skills-legend clearfix">
+              <div class="legend-left legend">Beginner</div>
+              <div class="legend-left legend"><span>Proficient</span></div>
+              <div class="legend-right legend"><span>Expert</span></div>
+              <div class="legend-right legend">Master</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- JQUERY -->
+  <script src="js/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="/module.js"></script>
+  <!-- BOOTSTRAP -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- SCRIPTS -->
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
